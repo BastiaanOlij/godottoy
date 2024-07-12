@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://das0lpwgtlux8"]
-
-[node name="SceneAnchor" type="StaticBody3D"]
-
-[node name="Label3D" type="Label3D" parent="."]

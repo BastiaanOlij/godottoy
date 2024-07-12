@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqut57kbgjuao"]
+[gd_scene load_steps=8 format=3 uid="uid://dqut57kbgjuao"]
 
 [ext_resource type="Script" path="res://start_vr.gd" id="1_hdbpa"]
-[ext_resource type="PackedScene" uid="uid://d22k0sp2hinew" path="res://assets/gltf/LeftHandHumanoid.gltf" id="2_y3n7r"]
-[ext_resource type="PackedScene" uid="uid://dlswhmq6s52gu" path="res://assets/gltf/RightHandHumanoid.gltf" id="3_87mju"]
-[ext_resource type="Material" uid="uid://bdwh0vc86hsdb" path="res://assets/YarnCat/hand_silhouette_outline_mat.tres" id="3_abf48"]
-[ext_resource type="Shader" uid="uid://cunx6rasg0d7e" path="res://materials/outline_shader.tres" id="5_at3jt"]
+[ext_resource type="Script" path="res://main.gd" id="1_mj1yx"]
+[ext_resource type="PackedScene" uid="uid://86wojhlpmg6s" path="res://playerrig/playerrig.tscn" id="4_a43sa"]
+[ext_resource type="PackedScene" uid="uid://das0lpwgtlux8" path="res://SceneManager/global_mesh.tscn" id="5_iyu7v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8o3gd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,13 +19,8 @@ ambient_light_source = 2
 ambient_light_color = Color(0.223103, 0.223103, 0.223103, 1)
 tonemap_mode = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_esghl"]
-render_priority = 0
-shader = ExtResource("5_at3jt")
-shader_parameter/FadeOffset = 0.5
-shader_parameter/FadeStrength = 10.0
-
 [node name="Main" type="Node3D"]
+script = ExtResource("1_mj1yx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 5, 0)
@@ -38,35 +32,10 @@ environment = SubResource("Environment_bybxn")
 [node name="StartVR" type="Node3D" parent="."]
 script = ExtResource("1_hdbpa")
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
+[node name="XROrigin3D" parent="." instance=ExtResource("4_a43sa")]
 
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="OpenXRFbSceneManager" type="OpenXRFbSceneManager" parent="XROrigin3D"]
+scenes/global_mesh = ExtResource("5_iyu7v")
 
-[node name="LeftHandVisualise" type="XRNode3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
-tracker = &"/user/hand_tracker/left"
-show_when_tracked = true
-
-[node name="LeftHandHumanoid2" parent="XROrigin3D/LeftHandVisualise" instance=ExtResource("2_y3n7r")]
-
-[node name="LeftHandHumanoidMesh" parent="XROrigin3D/LeftHandVisualise/LeftHandHumanoid2/LeftHandHumanoid/Skeleton3D" index="0"]
-material_override = ExtResource("3_abf48")
-
-[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/LeftHandVisualise/LeftHandHumanoid2/LeftHandHumanoid/Skeleton3D" index="2"]
-
-[node name="RightHandVisualise" type="XRNode3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
-tracker = &"/user/hand_tracker/right"
-show_when_tracked = true
-
-[node name="RightHandHumanoid2" parent="XROrigin3D/RightHandVisualise" instance=ExtResource("3_87mju")]
-
-[node name="RightHandHumanoidMesh" parent="XROrigin3D/RightHandVisualise/RightHandHumanoid2/RightHandHumanoid/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_esghl")
-
-[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/RightHandVisualise/RightHandHumanoid2/RightHandHumanoid/Skeleton3D" index="2"]
-hand_tracker = &"/user/hand_tracker/right"
-
-[editable path="XROrigin3D/LeftHandVisualise/LeftHandHumanoid2"]
-[editable path="XROrigin3D/RightHandVisualise/RightHandHumanoid2"]
+[connection signal="openxr_fb_scene_capture_completed" from="XROrigin3D/OpenXRFbSceneManager" to="." method="_on_scene_capture_completed"]
+[connection signal="openxr_fb_scene_data_missing" from="XROrigin3D/OpenXRFbSceneManager" to="." method="_on_scene_data_missing"]
