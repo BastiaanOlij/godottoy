@@ -1,0 +1,27 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://ch2dfa1rwkxyc"]
+
+[ext_resource type="Texture2D" uid="uid://dow38oa8kwgsn" path="res://assets/gltf/PlushieCharacter/plush_basecolor.png" id="1_mju4o"]
+[ext_resource type="Texture2D" uid="uid://u7sk6efrflht" path="res://assets/gltf/PlushieCharacter/plush_roughness.png" id="2_32ij5"]
+[ext_resource type="Texture2D" uid="uid://qf8yvh4lqfin" path="res://assets/gltf/PlushieCharacter/plush_normal.png" id="3_d4cqa"]
+
+[resource]
+resource_name = "godot_plush"
+cull_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("1_mju4o")
+metallic = 0.34
+metallic_specular = 0.43
+metallic_texture = ExtResource("2_32ij5")
+metallic_texture_channel = 2
+roughness = 0.92
+roughness_texture = ExtResource("2_32ij5")
+normal_enabled = true
+normal_scale = 0.8
+normal_texture = ExtResource("3_d4cqa")
+rim_enabled = true
+rim = 0.03
+rim_tint = 0.65
+rim_texture = ExtResource("1_mju4o")
+subsurf_scatter_strength = 0.7
+subsurf_scatter_texture = ExtResource("1_mju4o")
+backlight = Color(0.439049, 0.439049, 0.439049, 1)
