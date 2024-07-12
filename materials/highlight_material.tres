@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwtoq2uarshn"]
+
+[ext_resource type="Shader" path="res://materials/highlight.gdshader" id="1_1x3bt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1x3bt")
+shader_parameter/albedo = Color(0.647807, 0.620127, 0.0655316, 1)
+shader_parameter/grow = 0.00200076
+shader_parameter/specular = 0.5
+shader_parameter/metallic = null
+shader_parameter/roughness = 1.0

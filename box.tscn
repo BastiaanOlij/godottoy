@@ -15,7 +15,9 @@ size = Vector3(0.1, 0.1, 0.1)
 margin = 0.01
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="Box" type="RigidBody3D"]
+[node name="Box" type="RigidBody3D" groups=["unfreeze_on_start"]]
+freeze = true
+continuous_cd = true
 script = ExtResource("1_hpnth")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
