@@ -1,5 +1,6 @@
-extends StaticBody3D
+extends Area3D
 
+@onready var xr_controller : XRController3D = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

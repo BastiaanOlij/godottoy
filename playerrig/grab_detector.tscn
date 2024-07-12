@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4hly72op0moy"]
+
+[ext_resource type="Script" path="res://playerrig/grab_detector.gd" id="1_h67xl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t2w1s"]
+margin = 0.01
+radius = 0.1
+
+[node name="GrabDetector" type="Area3D"]
+script = ExtResource("1_h67xl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t2w1s")

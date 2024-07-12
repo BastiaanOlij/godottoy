@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://86wojhlpmg6s"]
+
+[ext_resource type="PackedScene" uid="uid://d22k0sp2hinew" path="res://assets/gltf/LeftHandHumanoid.gltf" id="1_00cko"]
+[ext_resource type="PackedScene" uid="uid://b4hly72op0moy" path="res://playerrig/grab_detector.tscn" id="1_e4vwq"]
+[ext_resource type="Material" uid="uid://bdwh0vc86hsdb" path="res://assets/YarnCat/hand_silhouette_outline_mat.tres" id="2_is0yv"]
+[ext_resource type="PackedScene" uid="uid://dlswhmq6s52gu" path="res://assets/gltf/RightHandHumanoid.gltf" id="3_e06un"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5lrj0"]
+radius = 0.01
+height = 0.02
+
+[node name="XROrigin3D" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="LeftHandController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+pose = &"grip"
+show_when_tracked = true
+
+[node name="Test" type="MeshInstance3D" parent="LeftHandController"]
+mesh = SubResource("SphereMesh_5lrj0")
+
+[node name="GrabDetector" parent="LeftHandController" instance=ExtResource("1_e4vwq")]
+
+[node name="RightHandController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+pose = &"grip"
+show_when_tracked = true
+
+[node name="Test" type="MeshInstance3D" parent="RightHandController"]
+mesh = SubResource("SphereMesh_5lrj0")
+skeleton = NodePath("../../LeftHandController")
+
+[node name="GrabDetector" parent="RightHandController" instance=ExtResource("1_e4vwq")]
+
+[node name="LeftHandVisualise" type="XRNode3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"/user/hand_tracker/left"
+show_when_tracked = true
+
+[node name="LeftHandHumanoid2" parent="LeftHandVisualise" instance=ExtResource("1_00cko")]
+
+[node name="LeftHandHumanoidMesh" parent="LeftHandVisualise/LeftHandHumanoid2/LeftHandHumanoid/Skeleton3D" index="0"]
+material_override = ExtResource("2_is0yv")
+
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="LeftHandVisualise/LeftHandHumanoid2/LeftHandHumanoid/Skeleton3D" index="1"]
+
+[node name="RightHandVisualise" type="XRNode3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"/user/hand_tracker/right"
+show_when_tracked = true
+
+[node name="RightHandHumanoid2" parent="RightHandVisualise" instance=ExtResource("3_e06un")]
+
+[node name="RightHandHumanoidMesh" parent="RightHandVisualise/RightHandHumanoid2/RightHandHumanoid/Skeleton3D" index="0"]
+material_override = ExtResource("2_is0yv")
+
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="RightHandVisualise/RightHandHumanoid2/RightHandHumanoid/Skeleton3D" index="1"]
+hand_tracker = &"/user/hand_tracker/right"
+
+[editable path="LeftHandVisualise/LeftHandHumanoid2"]
+[editable path="RightHandVisualise/RightHandHumanoid2"]

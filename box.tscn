@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://w4qm7d6meoo6"]
+
+[ext_resource type="Script" path="res://playerrig/pickable_object.gd" id="1_hpnth"]
+[ext_resource type="Texture2D" uid="uid://b1waowk6l76ap" path="res://assets/images/pattern.png" id="1_xlalx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebsok"]
+albedo_color = Color(0.389811, 0.555115, 0.392517, 1)
+albedo_texture = ExtResource("1_xlalx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ykroj"]
+material = SubResource("StandardMaterial3D_ebsok")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k5gmt"]
+margin = 0.01
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Box" type="RigidBody3D"]
+script = ExtResource("1_hpnth")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ykroj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_k5gmt")
