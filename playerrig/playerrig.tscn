@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://86wojhlpmg6s"]
+[gd_scene load_steps=7 format=3 uid="uid://86wojhlpmg6s"]
 
 [ext_resource type="PackedScene" uid="uid://d22k0sp2hinew" path="res://assets/gltf/LeftHandHumanoid.gltf" id="1_00cko"]
 [ext_resource type="PackedScene" uid="uid://b4hly72op0moy" path="res://playerrig/grab_detector.tscn" id="1_e4vwq"]
+[ext_resource type="Script" path="res://playerrig/playerrig.gd" id="1_h3miv"]
 [ext_resource type="Material" uid="uid://bdwh0vc86hsdb" path="res://assets/YarnCat/hand_silhouette_outline_mat.tres" id="2_is0yv"]
 [ext_resource type="PackedScene" uid="uid://dlswhmq6s52gu" path="res://assets/gltf/RightHandHumanoid.gltf" id="3_e06un"]
 
@@ -9,7 +10,8 @@
 radius = 0.01
 height = 0.02
 
-[node name="XROrigin3D" type="XROrigin3D"]
+[node name="PlayerRig" type="XROrigin3D"]
+script = ExtResource("1_h3miv")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -24,6 +26,7 @@ show_when_tracked = true
 mesh = SubResource("SphereMesh_5lrj0")
 
 [node name="GrabDetector" parent="LeftHandController" instance=ExtResource("1_e4vwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, -0.05)
 
 [node name="RightHandController" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
@@ -36,6 +39,7 @@ mesh = SubResource("SphereMesh_5lrj0")
 skeleton = NodePath("../../LeftHandController")
 
 [node name="GrabDetector" parent="RightHandController" instance=ExtResource("1_e4vwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, -0.05)
 
 [node name="LeftHandVisualise" type="XRNode3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
