@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=18 format=3 uid="uid://bwtaewom2rqa3"]
+[gd_resource type="AnimationLibrary" load_steps=20 format=3 uid="uid://bwtaewom2rqa3"]
 
 [ext_resource type="Animation" uid="uid://btxkm88fm0c73" path="res://assets/gltf/PlushieCharacter/Crying.res" id="1_q1xd8"]
 [ext_resource type="Animation" uid="uid://b4m6abgjcyi8n" path="res://assets/gltf/PlushieCharacter/No.res" id="1_rvg3i"]
@@ -17,12 +17,15 @@
 [ext_resource type="Animation" uid="uid://4ekj1f1wxjun" path="res://assets/gltf/PlushieCharacter/Sit_Loop.res" id="13_0bd50"]
 [ext_resource type="Animation" uid="uid://chlj4ibta0qxd" path="res://assets/gltf/PlushieCharacter/TPose.res" id="14_52k77"]
 [ext_resource type="Animation" uid="uid://d3l8kg6rbo22k" path="res://assets/gltf/PlushieCharacter/Walk.res" id="15_3wqmh"]
+[ext_resource type="Animation" uid="uid://cuxie0yg0d3o4" path="res://assets/gltf/PlushieCharacter/WakingFromSleep.res" id="18_cjufd"]
+[ext_resource type="Animation" uid="uid://bjyijkpnlju2l" path="res://assets/gltf/PlushieCharacter/GoingToSleep.res" id="19_s23t2"]
 
 [resource]
 _data = {
 "Crying": ExtResource("1_q1xd8"),
 "Eat": ExtResource("2_p6o4k"),
 "GetUp": ExtResource("3_qntyg"),
+"GoingToSleep": ExtResource("19_s23t2"),
 "Idle": ExtResource("11_kv8sr"),
 "Idle_ArmsFwrd": ExtResource("4_hlq1k"),
 "JumpingHands": ExtResource("5_af6kf"),
@@ -34,6 +37,7 @@ _data = {
 "Sit_Loop": ExtResource("13_0bd50"),
 "Sleep": ExtResource("9_r6u60"),
 "TPose": ExtResource("14_52k77"),
+"WakingFromSleep": ExtResource("18_cjufd"),
 "Walk": ExtResource("15_3wqmh"),
 "Walk_ArmsFwrd": ExtResource("10_pkyu8"),
 "Yes": ExtResource("2_ngqau")
