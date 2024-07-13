@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_mj1yx"]
 [ext_resource type="PackedScene" uid="uid://86wojhlpmg6s" path="res://playerrig/playerrig.tscn" id="4_a43sa"]
-[ext_resource type="PackedScene" uid="uid://5b1fwnd8pyyc" path="res://godot_plushie.tscn" id="5_6q1jx"]
+[ext_resource type="PackedScene" uid="uid://5b1fwnd8pyyc" path="res://godot_plushie/godot_plushie.tscn" id="5_6q1jx"]
 [ext_resource type="PackedScene" uid="uid://das0lpwgtlux8" path="res://SceneManager/global_mesh.tscn" id="5_iyu7v"]
-[ext_resource type="PackedScene" uid="uid://w4qm7d6meoo6" path="res://box.tscn" id="5_xtkha"]
+[ext_resource type="PackedScene" uid="uid://w4qm7d6meoo6" path="res://objects/box.tscn" id="5_xtkha"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8o3gd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

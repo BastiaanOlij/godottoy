@@ -1,9 +1,8 @@
 extends RigidBody3D
-class_name PickableObject3D
+class_name PickableRigidBody3D
 
 @export var snap_on_pickup = true
-
-@onready var highlight_material : Material = preload("res://materials/highlight_material.tres")
+@export var highlight_material : Material = preload("res://materials/highlight_material.tres")
 
 var is_frozen : bool = true
 var picked_up_by : Area3D
@@ -33,7 +32,6 @@ func _update_freeze():
 func add_is_closest(closest_to : Area3D):
 	if not closest_areas.has(closest_to):
 		closest_areas.push_back(closest_to)
-		print("is closest!")
 
 	_update_highlight()
 
@@ -45,18 +43,19 @@ func remove_is_closest(closest_to : Area3D):
 
 	_update_highlight()
 
+func _set_highlight(node : Node, material : Material):
+	for child in node.get_children():
+		if child is MeshInstance3D and child.is_in_group("highlight_pickup"):
+			var mesh_instance : MeshInstance3D = child
+			mesh_instance.material_overlay = material
+		_set_highlight(child, material)
+
 
 func _update_highlight():
 	if not picked_up_by and not closest_areas.is_empty():
-		for child in get_children():
-			if child is MeshInstance3D:
-				var mesh_instance : MeshInstance3D = child
-				mesh_instance.material_overlay = highlight_material
+		_set_highlight(self, highlight_material)
 	else:
-		for child in get_children():
-			if child is MeshInstance3D:
-				var mesh_instance : MeshInstance3D = child
-				mesh_instance.material_overlay = null
+		_set_highlight(self, null)
 
 
 func pick_up(pick_up_by):

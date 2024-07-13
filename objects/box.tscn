@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://w4qm7d6meoo6"]
 
-[ext_resource type="Script" path="res://playerrig/pickable_object.gd" id="1_hpnth"]
+[ext_resource type="Script" path="res://objects/pickable_rigidbody.gd" id="1_hpnth"]
 [ext_resource type="Texture2D" uid="uid://b1waowk6l76ap" path="res://assets/images/pattern.png" id="1_xlalx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebsok"]
@@ -20,7 +20,7 @@ freeze = true
 continuous_cd = true
 script = ExtResource("1_hpnth")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["highlight_pickup"]]
 mesh = SubResource("BoxMesh_ykroj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
