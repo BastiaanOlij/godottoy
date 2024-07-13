@@ -1,8 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://5b1fwnd8pyyc"]
+[gd_scene load_steps=11 format=3 uid="uid://5b1fwnd8pyyc"]
 
+[ext_resource type="Script" path="res://godot_plushie/godot_plushie.gd" id="1_7ltfj"]
 [ext_resource type="ArrayMesh" uid="uid://coawvkyfii6ko" path="res://assets/gltf/PlushieCharacter/GodotPlushie_godot_plush.res" id="1_gc74h"]
-[ext_resource type="Script" path="res://playerrig/pickable_object.gd" id="1_wcrgh"]
-[ext_resource type="AnimationLibrary" uid="uid://bwtaewom2rqa3" path="res://plushie_animation_library.tres" id="3_ybhia"]
+[ext_resource type="Shader" path="res://materials/highlight_by_normal.gdshader" id="2_drmmc"]
+[ext_resource type="AnimationLibrary" uid="uid://bwtaewom2rqa3" path="res://godot_plushie/plushie_animation_library.tres" id="3_ybhia"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/statemachine.gd" id="5_nl81g"]
+[ext_resource type="Script" path="res://godot_plushie/idle_state.gd" id="6_3onee"]
+[ext_resource type="Script" path="res://godot_plushie/frozen_state.gd" id="7_7d5w8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jl0g4"]
+render_priority = 0
+shader = ExtResource("2_drmmc")
+shader_parameter/albedo = Color(0.647807, 0.620127, 0.0655316, 1)
+shader_parameter/grow = 0.0200008
+shader_parameter/specular = 0.5
+shader_parameter/metallic = null
+shader_parameter/roughness = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2ken"]
 size = Vector3(0.1, 0.15, 0.1)
@@ -95,11 +108,10 @@ bind/27/name = &"LeftUpperArm_twist_01"
 bind/27/bone = -1
 bind/27/pose = Transform3D(0.321965, 0.367639, 0.872456, 0.776797, -0.629386, -0.0214504, 0.541226, 0.684627, -0.488222, -0.471868, 0.0987104, -0.857062)
 
-[node name="GodotPlushie" type="RigidBody3D" groups=["unfreeze_on_start"]]
-freeze = true
-continuous_cd = true
-script = ExtResource("1_wcrgh")
+[node name="GodotPlushie" type="CharacterBody3D" groups=["unfreeze_on_start"]]
+script = ExtResource("1_7ltfj")
 snap_on_pickup = false
+highlight_material = SubResource("ShaderMaterial_jl0g4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
@@ -306,7 +318,7 @@ bones/27/position = Vector3(3.25963e-08, 2.12967e-08, 2.70084e-08)
 bones/27/rotation = Quaternion(8.49635e-07, -0.0858023, -4.50287e-07, 0.996312)
 bones/27/scale = Vector3(1, 1, 1)
 
-[node name="godot_plush" type="MeshInstance3D" parent="root/Skeleton3D"]
+[node name="godot_plush" type="MeshInstance3D" parent="root/Skeleton3D" groups=["highlight_pickup"]]
 mesh = ExtResource("1_gc74h")
 skin = SubResource("Skin_3iuba")
 
@@ -315,3 +327,12 @@ libraries = {
 "": ExtResource("3_ybhia")
 }
 autoplay = "Idle"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_nl81g")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("6_3onee")
+
+[node name="FrozenState" type="Node" parent="StateMachine"]
+script = ExtResource("7_7d5w8")

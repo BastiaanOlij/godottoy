@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwtoq2uarshn"]
 
-[ext_resource type="Shader" path="res://materials/highlight.gdshader" id="1_1x3bt"]
+[ext_resource type="Shader" path="res://materials/highlight_by_vertex.gdshader" id="1_1x3bt"]
 
 [resource]
 render_priority = 0

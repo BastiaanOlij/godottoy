@@ -6,8 +6,8 @@ extends Area3D
 		if is_inside_tree():
 			_update_enabled()
 
-var closest_body : PickableObject3D
-var picked_up_body : PickableObject3D
+var closest_body : PhysicsBody3D
+var picked_up_body : PhysicsBody3D
 var was_grab_pressed : bool = false
 
 
@@ -18,8 +18,6 @@ func _update_enabled():
 
 	set_physics_process(enabled)
 
-	if enabled:
-		print("Grab detector enabled")
 
 func _update_closest_body():
 	# If we've picked up something, we no longer track who is closest
@@ -31,11 +29,11 @@ func _update_closest_body():
 		return
 
 	# Find our closest body
-	var new_closest_body : PickableObject3D
+	var new_closest_body : PhysicsBody3D
 	var closest_distance : float = 1000000.0
 	
 	for body in get_overlapping_bodies():
-		if body is PickableObject3D and not body.is_picked_up():
+		if (body is PickableRigidBody3D or body is PickableCharacterBody3D) and not body.is_picked_up():
 			var distance_squared = (body.global_position - global_position).length_squared()
 			if distance_squared < closest_distance:
 				new_closest_body = body
@@ -83,7 +81,7 @@ func _physics_process(delta):
 	var controller : XRController3D = _get_parent_controller()
 	if controller:
 		var grab_value : float = controller.get_float("grab")
-		var threshold : float = 0.4 if was_grab_pressed else 0.6
+		var threshold : float = 0.6 if was_grab_pressed else 0.8
 		grab_pressed = grab_value > threshold
 	
 	# Do we need to let go
