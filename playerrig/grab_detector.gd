@@ -86,7 +86,14 @@ func _physics_process(delta):
 	
 	# Do we need to let go
 	if picked_up_body and not grab_pressed:
-		picked_up_body.let_go()
+		var linear_velocity = Vector3()
+
+		var tracker : XRPositionalTracker = XRServer.get_tracker(controller.tracker)
+		if tracker:
+			var pose : XRPose = tracker.get_pose(controller.pose)
+			linear_velocity = pose.linear_velocity
+
+		picked_up_body.let_go(linear_velocity)
 		picked_up_body = null
 		
 	# Do we need to pick something up

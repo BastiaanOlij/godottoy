@@ -86,7 +86,7 @@ func pick_up(pick_up_by):
 		tween = create_tween()
 		tween.tween_property(self, "transform", Transform3D(), 0.1)
 
-func let_go():
+func let_go(new_linear_velocity = Vector3()):
 	if not picked_up_by:
 		return
 
@@ -103,3 +103,5 @@ func let_go():
 
 	original_parent.add_child(self)
 	global_transform = current_transform
+
+	velocity = new_linear_velocity
