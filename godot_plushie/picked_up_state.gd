@@ -1,20 +1,21 @@
 extends State
-class_name FrozenState
-
+class_name PickedUpState
 
 # Get the name of this state
 func get_state_name() -> String:
-	return "Frozen"
+	return "Picked Up"
 
 
 # We're entering this state
 func enter(plushie : GodotPlushie) -> void:
-	plushie.visible = false
+	var animator : PlushieAnimator = plushie.get_node("Plushie")
+	animator.picked_up = true
 
 
 # We're exiting this state
 func exit(plushie : GodotPlushie) -> void:
-	plushie.visible = true
+	var animator : PlushieAnimator = plushie.get_node("Plushie")
+	animator.picked_up = false
 
 
 # Handle physics process.
