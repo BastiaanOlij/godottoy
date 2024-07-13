@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2di5schyfuit"]
+
+[ext_resource type="PackedScene" uid="uid://4qv1ic25pm3g" path="res://godot_plushie/plushie_visual_only.tscn" id="1_hx2he"]
+
+[node name="TestAnimationScene" type="Node3D"]
+
+[node name="PlushieVisual" parent="." instance=ExtResource("1_hx2he")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.881295, 0.472566, 0, -0.472566, 0.881295, 0, 0.532577, 0.642355)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.851553, -0.42447, 0.307705, 0, 0.586924, 0.809642, -0.524268, -0.689453, 0.499797, 0, 0, 0)

@@ -1,0 +1,122 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=24 format=3 uid="uid://yima7byf3t82"]
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_anknn"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_i6o1o"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0ys7"]
+animation = &"Crying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xuru0"]
+animation = &"Idle_ArmsFwrd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s4b1f"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_msf0q"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4aeos"]
+animation = &"Run_ArmsFwd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7eqfd"]
+animation = &"Run_ArmsFwd"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_476eo"]
+animation = &"Run"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7q83"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_huesa"]
+animation = &"Walk_ArmsFwrd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mg7u7"]
+animation = &"Walk"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5pj2"]
+animation = &"Walk_ArmsFwrd"
+play_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7yr2l"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_xuru0")
+blend_point_0/pos = Vector2(1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_s4b1f")
+blend_point_1/pos = Vector2(0, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_msf0q")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_4aeos")
+blend_point_3/pos = Vector2(1, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_7eqfd")
+blend_point_4/pos = Vector2(1, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_476eo")
+blend_point_5/pos = Vector2(0, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_t7q83")
+blend_point_6/pos = Vector2(0, 0.5)
+blend_point_7/node = SubResource("AnimationNodeAnimation_huesa")
+blend_point_7/pos = Vector2(1, 0.5)
+blend_point_8/node = SubResource("AnimationNodeAnimation_mg7u7")
+blend_point_8/pos = Vector2(0, -0.5)
+blend_point_9/node = SubResource("AnimationNodeAnimation_r5pj2")
+blend_point_9/pos = Vector2(1, -0.5)
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lhxmi"]
+animation = &"No"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0c6vm"]
+animation = &"GoingToSleep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r38qb"]
+animation = &"Sleep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghfp5"]
+animation = &"WakingFromSleep"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l6s6f"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hlhc0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1a1hl"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"awake"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dosah"]
+state_machine_type = 1
+states/GoingToSleep/node = SubResource("AnimationNodeAnimation_0c6vm")
+states/GoingToSleep/position = Vector2(295, 100)
+states/Sleep/node = SubResource("AnimationNodeAnimation_r38qb")
+states/Sleep/position = Vector2(534, 105)
+states/Start/position = Vector2(90, 100)
+states/WakingFromSleep/node = SubResource("AnimationNodeAnimation_ghfp5")
+states/WakingFromSleep/position = Vector2(725, 100)
+transitions = ["Start", "GoingToSleep", SubResource("AnimationNodeStateMachineTransition_l6s6f"), "GoingToSleep", "Sleep", SubResource("AnimationNodeStateMachineTransition_hlhc0"), "Sleep", "WakingFromSleep", SubResource("AnimationNodeStateMachineTransition_1a1hl")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2xon1"]
+animation = &"Yes"
+
+[resource]
+graph_offset = Vector2(-347.752, -52.5787)
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_anknn")
+nodes/Blend3/position = Vector2(1080, 120)
+nodes/Cry/node = SubResource("AnimationNodeBlend2_i6o1o")
+nodes/Cry/position = Vector2(720, 400)
+nodes/CryingAnim/node = SubResource("AnimationNodeAnimation_d0ys7")
+nodes/CryingAnim/position = Vector2(380, 560)
+nodes/Locomotion/node = SubResource("AnimationNodeBlendSpace2D_7yr2l")
+nodes/Locomotion/position = Vector2(200, 260)
+nodes/NoAnim/node = SubResource("AnimationNodeAnimation_lhxmi")
+nodes/NoAnim/position = Vector2(640, 160)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_dosah")
+nodes/StateMachine/position = Vector2(980, 600)
+nodes/YesAnim/node = SubResource("AnimationNodeAnimation_2xon1")
+nodes/YesAnim/position = Vector2(640, 20)
+nodes/output/position = Vector2(1320, 260)
+node_connections = [&"Blend3", 0, &"NoAnim", &"Blend3", 1, &"Cry", &"Blend3", 2, &"YesAnim", &"Cry", 0, &"Locomotion", &"Cry", 1, &"CryingAnim", &"output", 0, &"Blend3"]
