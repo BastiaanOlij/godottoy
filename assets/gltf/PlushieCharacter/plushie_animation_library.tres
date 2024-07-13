@@ -1,0 +1,40 @@
+[gd_resource type="AnimationLibrary" load_steps=18 format=3 uid="uid://bwtaewom2rqa3"]
+
+[ext_resource type="Animation" uid="uid://btxkm88fm0c73" path="res://assets/gltf/PlushieCharacter/Crying.res" id="1_q1xd8"]
+[ext_resource type="Animation" uid="uid://b4m6abgjcyi8n" path="res://assets/gltf/PlushieCharacter/No.res" id="1_rvg3i"]
+[ext_resource type="Animation" uid="uid://dbcmyeybay41u" path="res://assets/gltf/PlushieCharacter/Yes.res" id="2_ngqau"]
+[ext_resource type="Animation" uid="uid://dlcxqsdeq7mh7" path="res://assets/gltf/PlushieCharacter/Eat.res" id="2_p6o4k"]
+[ext_resource type="Animation" uid="uid://uo107xxvbl5x" path="res://assets/gltf/PlushieCharacter/GetUp.res" id="3_qntyg"]
+[ext_resource type="Animation" uid="uid://dqceeiytvvb6u" path="res://assets/gltf/PlushieCharacter/Idle_ArmsFwrd.res" id="4_hlq1k"]
+[ext_resource type="Animation" uid="uid://dlxoan0aixk4m" path="res://assets/gltf/PlushieCharacter/JumpingHands.res" id="5_af6kf"]
+[ext_resource type="Animation" uid="uid://bwke4r6018p4g" path="res://assets/gltf/PlushieCharacter/PickedUp.res" id="6_xufi4"]
+[ext_resource type="Animation" uid="uid://ct4ybv7f85dge" path="res://assets/gltf/PlushieCharacter/Run.res" id="7_isl3t"]
+[ext_resource type="Animation" uid="uid://fui8bm2f0duk" path="res://assets/gltf/PlushieCharacter/Run_ArmsFwd.res" id="8_48o5i"]
+[ext_resource type="Animation" uid="uid://dqw06iq0a4ags" path="res://assets/gltf/PlushieCharacter/Sleep.res" id="9_r6u60"]
+[ext_resource type="Animation" uid="uid://bellqu7l8t7ob" path="res://assets/gltf/PlushieCharacter/Walk_ArmsFwrd.res" id="10_pkyu8"]
+[ext_resource type="Animation" uid="uid://6j0conlp8xtq" path="res://assets/gltf/PlushieCharacter/Idle.res" id="11_kv8sr"]
+[ext_resource type="Animation" uid="uid://7a026p8s1otx" path="res://assets/gltf/PlushieCharacter/Sit.res" id="12_mtagc"]
+[ext_resource type="Animation" uid="uid://4ekj1f1wxjun" path="res://assets/gltf/PlushieCharacter/Sit_Loop.res" id="13_0bd50"]
+[ext_resource type="Animation" uid="uid://chlj4ibta0qxd" path="res://assets/gltf/PlushieCharacter/TPose.res" id="14_52k77"]
+[ext_resource type="Animation" uid="uid://d3l8kg6rbo22k" path="res://assets/gltf/PlushieCharacter/Walk.res" id="15_3wqmh"]
+
+[resource]
+_data = {
+"Crying": ExtResource("1_q1xd8"),
+"Eat": ExtResource("2_p6o4k"),
+"GetUp": ExtResource("3_qntyg"),
+"Idle": ExtResource("11_kv8sr"),
+"Idle_ArmsFwrd": ExtResource("4_hlq1k"),
+"JumpingHands": ExtResource("5_af6kf"),
+"No": ExtResource("1_rvg3i"),
+"PickedUp": ExtResource("6_xufi4"),
+"Run": ExtResource("7_isl3t"),
+"Run_ArmsFwd": ExtResource("8_48o5i"),
+"Sit": ExtResource("12_mtagc"),
+"Sit_Loop": ExtResource("13_0bd50"),
+"Sleep": ExtResource("9_r6u60"),
+"TPose": ExtResource("14_52k77"),
+"Walk": ExtResource("15_3wqmh"),
+"Walk_ArmsFwrd": ExtResource("10_pkyu8"),
+"Yes": ExtResource("2_ngqau")
+}
