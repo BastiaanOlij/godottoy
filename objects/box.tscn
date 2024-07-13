@@ -19,6 +19,7 @@ size = Vector3(0.1, 0.1, 0.1)
 freeze = true
 continuous_cd = true
 script = ExtResource("1_hpnth")
+snap_on_pickup = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["highlight_pickup"]]
 mesh = SubResource("BoxMesh_ykroj")

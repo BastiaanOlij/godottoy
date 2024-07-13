@@ -3,6 +3,12 @@ class_name StateMachine
 
 @onready var plushie : GodotPlushie = get_parent()
 
+
+@export_range(0.0, 1.0, 0.1) var stamina : float = 1.0
+@export_range(0.0, 1.0, 0.1) var hunger : float = 0.0
+@export_range(0.0, 1.0, 0.1) var happiness : float = 1.0 
+
+
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
 @export var state : State:
 	set(value):
@@ -14,7 +20,6 @@ class_name StateMachine
 		if state and is_inside_tree():
 			# init our new state
 			state.enter(plushie)
-
 
 
 # Called when the node enters the scene tree for the first time.

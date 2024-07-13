@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5b1fwnd8pyyc"]
+[gd_scene load_steps=13 format=3 uid="uid://5b1fwnd8pyyc"]
 
 [ext_resource type="Script" path="res://godot_plushie/godot_plushie.gd" id="1_7ltfj"]
 [ext_resource type="Shader" path="res://materials/highlight_by_normal.gdshader" id="2_drmmc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://godot_plushie/frozen_state.gd" id="7_7d5w8"]
 [ext_resource type="Script" path="res://godot_plushie/falling_state.gd" id="7_s0i25"]
 [ext_resource type="Script" path="res://godot_plushie/picked_up_state.gd" id="9_lh4d6"]
+[ext_resource type="Script" path="res://godot_plushie/jumping_for_food_state.gd" id="9_n6vq4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jl0g4"]
 render_priority = 0
@@ -21,6 +22,9 @@ shader_parameter/roughness = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2ken"]
 size = Vector3(0.1, 0.15, 0.1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_5vt2m"]
+radius = 0.3
+
 [node name="GodotPlushie" type="CharacterBody3D" groups=["unfreeze_on_start"]]
 script = ExtResource("1_7ltfj")
 snap_on_pickup = false
@@ -31,6 +35,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
 shape = SubResource("BoxShape3D_x2ken")
 
 [node name="Plushie" parent="." instance=ExtResource("3_nbn1n")]
+
+[node name="FoodDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoodDetector"]
+shape = SubResource("SphereShape3D_5vt2m")
 
 [node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("state")]
 script = ExtResource("5_nl81g")
@@ -53,3 +65,6 @@ script = ExtResource("6_3onee")
 
 [node name="PickedUpState" type="Node3D" parent="StateMachine"]
 script = ExtResource("9_lh4d6")
+
+[node name="JumpingForFoodState" type="Node3D" parent="StateMachine"]
+script = ExtResource("9_n6vq4")

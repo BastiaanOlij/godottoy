@@ -20,8 +20,8 @@ class_name PlushieAnimator
 @export var eat:bool = false:
 	set(v):
 		eat = v
-		await get_tree().create_timer(0.05).timeout
-		eat = false
+		# await get_tree().create_timer(0.05).timeout
+		# eat = false
 @export var yes:bool = false:
 	set(v):
 		yes = v
@@ -32,3 +32,8 @@ class_name PlushieAnimator
 		no = v
 		await get_tree().create_timer(0.02).timeout
 		no = false
+
+
+func _on_animation_finished(anim_name):
+	if anim_name == "Eat":
+		eat = false

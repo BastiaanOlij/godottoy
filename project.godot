@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 unfreeze_on_start=""
 highlight_pickup=""
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Food"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

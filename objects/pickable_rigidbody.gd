@@ -11,9 +11,15 @@ var closest_areas : Array
 var original_parent : Node3D
 var tween : Tween
 
+func _ready():
+	# Hide until unfrozen
+	visible = false
+
+
 # Unfreeze is called by our main script once our global mesh is setup.
 func unfreeze():
 	is_frozen = false
+	visible = true
 	_update_freeze()
 
 

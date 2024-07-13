@@ -7,14 +7,17 @@ func get_state_name() -> String:
 	return "Idle"
 
 
-# We're entering this state
-func enter(plushie : GodotPlushie) -> void:
-	var animation_player : AnimationPlayer = plushie.get_node("AnimationPlayer")
-	animation_player.play("Idle")
-
-
 # Handle physics process.
 func do_physics_process(plushie : GodotPlushie, delta : float) -> bool:
+	var food_detector : Area3D = plushie.get_node("FoodDetector")
+	if food_detector.has_overlapping_bodies():
+		state_machine.state = get_node("../JumpingForFoodState")
+		return false
+
+	if state_machine.happiness < 0.3:
+		# TODO go to sad state, should also check other markers!
+		pass
+
 	# Do our normal logic first
 	super(plushie, delta)
 

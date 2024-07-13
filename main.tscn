@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqut57kbgjuao"]
+[gd_scene load_steps=10 format=3 uid="uid://dqut57kbgjuao"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mj1yx"]
 [ext_resource type="PackedScene" uid="uid://86wojhlpmg6s" path="res://playerrig/playerrig.tscn" id="4_a43sa"]
 [ext_resource type="PackedScene" uid="uid://5b1fwnd8pyyc" path="res://godot_plushie/godot_plushie.tscn" id="5_6q1jx"]
 [ext_resource type="PackedScene" uid="uid://das0lpwgtlux8" path="res://SceneManager/global_mesh.tscn" id="5_iyu7v"]
 [ext_resource type="PackedScene" uid="uid://w4qm7d6meoo6" path="res://objects/box.tscn" id="5_xtkha"]
+[ext_resource type="PackedScene" uid="uid://d4cwukx6pyxjx" path="res://objects/cookie.tscn" id="6_dhka1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8o3gd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,6 +41,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6176, -0.431028)
 
 [node name="GodotPlushie" parent="." instance=ExtResource("5_6q1jx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.220739, 1.36696, -0.387899)
+
+[node name="Cookie1" parent="." instance=ExtResource("6_dhka1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.55097, -0.426838)
+
+[node name="Cookie2" parent="." instance=ExtResource("6_dhka1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.59234, -0.426838)
+
+[node name="Cookie3" parent="." instance=ExtResource("6_dhka1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.63758, -0.426838)
+
+[node name="Cookie4" parent="." instance=ExtResource("6_dhka1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.67619, -0.426838)
+
+[node name="Cookie5" parent="." instance=ExtResource("6_dhka1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.70755, -0.426838)
 
 [connection signal="openxr_fb_scene_anchor_created" from="PlayerRig/OpenXRFbSceneManager" to="." method="_on_scene_anchor_created"]
 [connection signal="openxr_fb_scene_capture_completed" from="PlayerRig/OpenXRFbSceneManager" to="." method="_on_scene_capture_completed"]
