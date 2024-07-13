@@ -1,6 +1,8 @@
-[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://bwtaewom2rqa3"]
+[gd_resource type="AnimationLibrary" load_steps=18 format=3 uid="uid://bwtaewom2rqa3"]
 
 [ext_resource type="Animation" uid="uid://btxkm88fm0c73" path="res://assets/gltf/PlushieCharacter/Crying.res" id="1_q1xd8"]
+[ext_resource type="Animation" uid="uid://b4m6abgjcyi8n" path="res://assets/gltf/PlushieCharacter/No.res" id="1_rvg3i"]
+[ext_resource type="Animation" uid="uid://dbcmyeybay41u" path="res://assets/gltf/PlushieCharacter/Yes.res" id="2_ngqau"]
 [ext_resource type="Animation" uid="uid://dlcxqsdeq7mh7" path="res://assets/gltf/PlushieCharacter/Eat.res" id="2_p6o4k"]
 [ext_resource type="Animation" uid="uid://uo107xxvbl5x" path="res://assets/gltf/PlushieCharacter/GetUp.res" id="3_qntyg"]
 [ext_resource type="Animation" uid="uid://dqceeiytvvb6u" path="res://assets/gltf/PlushieCharacter/Idle_ArmsFwrd.res" id="4_hlq1k"]
@@ -24,6 +26,7 @@ _data = {
 "Idle": ExtResource("11_kv8sr"),
 "Idle_ArmsFwrd": ExtResource("4_hlq1k"),
 "JumpingHands": ExtResource("5_af6kf"),
+"No": ExtResource("1_rvg3i"),
 "PickedUp": ExtResource("6_xufi4"),
 "Run": ExtResource("7_isl3t"),
 "Run_ArmsFwd": ExtResource("8_48o5i"),
@@ -32,5 +35,6 @@ _data = {
 "Sleep": ExtResource("9_r6u60"),
 "TPose": ExtResource("14_52k77"),
 "Walk": ExtResource("15_3wqmh"),
-"Walk_ArmsFwrd": ExtResource("10_pkyu8")
+"Walk_ArmsFwrd": ExtResource("10_pkyu8"),
+"Yes": ExtResource("2_ngqau")
 }
