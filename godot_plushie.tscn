@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://coawvkyfii6ko" path="res://assets/gltf/PlushieCharacter/GodotPlushie_godot_plush.res" id="1_gc74h"]
 [ext_resource type="Script" path="res://playerrig/pickable_object.gd" id="1_wcrgh"]
-[ext_resource type="AnimationLibrary" uid="uid://bwtaewom2rqa3" path="res://plushie_animation_library.tres" id="3_ybhia"]
+[ext_resource type="AnimationLibrary" uid="uid://bwtaewom2rqa3" path="res://assets/gltf/PlushieCharacter/plushie_animation_library.tres" id="3_ybhia"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2ken"]
 size = Vector3(0.1, 0.15, 0.1)
