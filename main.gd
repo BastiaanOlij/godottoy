@@ -1,6 +1,6 @@
 extends "res://start_vr.gd"
 
-@onready var scene_manager: OpenXRFbSceneManager = $XROrigin3D/OpenXRFbSceneManager
+@onready var scene_manager: OpenXRFbSceneManager = %OpenXRFbSceneManager
 
 func _on_scene_data_missing():
 	print ("On scene data missing")
@@ -24,5 +24,10 @@ func _on_scene_anchor_created(scene_node, spatial_entity):
 	if scene_node is GlobalMesh:
 		# We can unpause stuff
 		get_tree().call_group("unfreeze_on_start", "unfreeze")
-
 		$PlayerRig.enabled = true
+		await get_tree().process_frame
+		%NavigationRegion3D.bake_navigation_mesh()
+
+
+func _on_navigation_region_3d_bake_finished():
+	print("Navigation mesh bake finished")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqut57kbgjuao"]
+[gd_scene load_steps=11 format=3 uid="uid://dqut57kbgjuao"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mj1yx"]
 [ext_resource type="PackedScene" uid="uid://86wojhlpmg6s" path="res://playerrig/playerrig.tscn" id="4_a43sa"]
@@ -21,6 +21,10 @@ ambient_light_source = 2
 ambient_light_color = Color(0.223103, 0.223103, 0.223103, 1)
 tonemap_mode = 2
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_40y41"]
+sample_partition_type = 1
+geometry_source_geometry_mode = 2
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_mj1yx")
 
@@ -35,6 +39,7 @@ enabled = false
 
 [node name="OpenXRFbSceneManager" type="OpenXRFbSceneManager" parent="PlayerRig"]
 scenes/global_mesh = ExtResource("5_iyu7v")
+unique_name_in_owner = true
 
 [node name="Box" parent="." instance=ExtResource("5_xtkha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6176, -0.431028)
@@ -57,6 +62,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.67619, -0.426838
 [node name="Cookie5" parent="." instance=ExtResource("6_dhka1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147643, 1.70755, -0.426838)
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navmesh_regions"]]
+unique_name_in_owner = true
+navigation_mesh = SubResource("NavigationMesh_40y41")
+
 [connection signal="openxr_fb_scene_anchor_created" from="PlayerRig/OpenXRFbSceneManager" to="." method="_on_scene_anchor_created"]
 [connection signal="openxr_fb_scene_capture_completed" from="PlayerRig/OpenXRFbSceneManager" to="." method="_on_scene_capture_completed"]
 [connection signal="openxr_fb_scene_data_missing" from="PlayerRig/OpenXRFbSceneManager" to="." method="_on_scene_data_missing"]
+[connection signal="bake_finished" from="NavigationRegion3D" to="." method="_on_navigation_region_3d_bake_finished"]
