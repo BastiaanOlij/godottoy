@@ -8,18 +8,18 @@ func get_state_name() -> String:
 
 
 # We're entering this state
-func enter(plushie : GodotPlushie) -> void:
+func enter() -> void:
 	plushie.visible = false
 
 
 # We're exiting this state
-func exit(plushie : GodotPlushie) -> void:
+func exit() -> void:
 	plushie.visible = true
 
 
 # Handle physics process.
 @warning_ignore("unused_parameter")
-func do_physics_process(plushie : GodotPlushie, delta : float) -> bool:
+func do_physics_process(delta : float) -> bool:
 	plushie.velocity = Vector3()
 
 	return false

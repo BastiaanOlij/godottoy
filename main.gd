@@ -25,7 +25,11 @@ func _on_scene_anchor_created(scene_node, spatial_entity):
 		# We can unpause stuff
 		get_tree().call_group("unfreeze_on_start", "unfreeze")
 		$PlayerRig.enabled = true
+
+		# Wait until we've rendered one frame.
 		await get_tree().process_frame
+
+		# Now bake our navigation mesh.
 		%NavigationRegion3D.bake_navigation_mesh()
 
 

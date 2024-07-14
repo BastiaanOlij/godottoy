@@ -1,14 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://5b1fwnd8pyyc"]
+[gd_scene load_steps=26 format=3 uid="uid://5b1fwnd8pyyc"]
 
 [ext_resource type="Script" path="res://godot_plushie/godot_plushie.gd" id="1_7ltfj"]
 [ext_resource type="Shader" path="res://materials/highlight_by_normal.gdshader" id="2_drmmc"]
 [ext_resource type="PackedScene" uid="uid://4qv1ic25pm3g" path="res://godot_plushie/plushie_visual_only.tscn" id="3_nbn1n"]
+[ext_resource type="Script" path="res://godot_plushie/plushie_detector.gd" id="4_salng"]
 [ext_resource type="Script" path="res://godot_plushie/statemachine/statemachine.gd" id="5_nl81g"]
-[ext_resource type="Script" path="res://godot_plushie/idle_state.gd" id="6_3onee"]
-[ext_resource type="Script" path="res://godot_plushie/frozen_state.gd" id="7_7d5w8"]
-[ext_resource type="Script" path="res://godot_plushie/falling_state.gd" id="7_s0i25"]
-[ext_resource type="Script" path="res://godot_plushie/picked_up_state.gd" id="9_lh4d6"]
-[ext_resource type="Script" path="res://godot_plushie/jumping_for_food_state.gd" id="9_n6vq4"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/states/idle_state.gd" id="6_3onee"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/states/frozen_state.gd" id="7_7d5w8"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/states/falling_state.gd" id="7_s0i25"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/states/picked_up_state.gd" id="9_lh4d6"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/states/jumping_for_food_state.gd" id="9_n6vq4"]
+[ext_resource type="Script" path="res://godot_plushie/statemachine/states/move_to_state.gd" id="10_2lf8p"]
+[ext_resource type="Script" path="res://godot_plushie/sad_state.gd" id="12_36y4b"]
+[ext_resource type="Script" path="res://godot_plushie/sleep_state.gd" id="13_nkr01"]
+[ext_resource type="Texture2D" uid="uid://dcmkq5hitdvrk" path="res://assets/images/z.png" id="14_1oi5n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jl0g4"]
 render_priority = 0
@@ -19,38 +24,87 @@ shader_parameter/specular = 0.5
 shader_parameter/metallic = null
 shader_parameter/roughness = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_x2ken"]
-size = Vector3(0.1, 0.15, 0.1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_224wo"]
+margin = 0.01
+radius = 0.05
+height = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_grwlp"]
+radius = 0.0770797
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5vt2m"]
-radius = 0.3
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2a3mu"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("14_1oi5n")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_dpdwo"]
+_data = [Vector2(0, 0.978022), 0.0, 0.0, 0, 0, Vector2(1, 0.120879), -3.01099, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ol181"]
+curve = SubResource("Curve_dpdwo")
+
+[sub_resource type="Curve" id="Curve_lvtns"]
+_data = [Vector2(0, 0.252747), 0.0, 5.1617, 0, 0, Vector2(0.233577, 1), 4.66619e-07, 4.66619e-07, 0, 0, Vector2(1, 0), -2.39108, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ntjny"]
+curve = SubResource("Curve_lvtns")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c7eyl"]
+gravity = Vector3(0, 0.1, 0)
+scale_curve = SubResource("CurveTexture_ntjny")
+alpha_curve = SubResource("CurveTexture_ol181")
+turbulence_enabled = true
+turbulence_noise_scale = 6.045
+
+[sub_resource type="QuadMesh" id="QuadMesh_el381"]
+size = Vector2(0.05, 0.05)
 
 [node name="GodotPlushie" type="CharacterBody3D" groups=["unfreeze_on_start"]]
 script = ExtResource("1_7ltfj")
 snap_on_pickup = false
 highlight_material = SubResource("ShaderMaterial_jl0g4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="GroundCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
-shape = SubResource("BoxShape3D_x2ken")
+shape = SubResource("CapsuleShape3D_224wo")
+
+[node name="HeadCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0869923, 0)
+shape = SubResource("SphereShape3D_grwlp")
 
 [node name="Plushie" parent="." instance=ExtResource("3_nbn1n")]
 
-[node name="FoodDetector" type="Area3D" parent="."]
+[node name="PlushieDetector" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 collision_layer = 2
 collision_mask = 2
+script = ExtResource("4_salng")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FoodDetector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlushieDetector"]
 shape = SubResource("SphereShape3D_5vt2m")
 
-[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("state")]
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("plushie", "animator", "navigation_agent", "plushie_detector", "state")]
 script = ExtResource("5_nl81g")
+plushie = NodePath("..")
+animator = NodePath("../Plushie")
+navigation_agent = NodePath("../NavigationAgent3D")
+plushie_detector = NodePath("../PlushieDetector")
 state = NodePath("FrozenState")
 
 [node name="StateLabel" type="Label3D" parent="StateMachine"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191594, 0)
-pixel_size = 0.002
+visible = false
+pixel_size = 0.001
 text = "Hello"
 vertical_alignment = 2
 
@@ -69,5 +123,32 @@ script = ExtResource("9_lh4d6")
 [node name="JumpingForFoodState" type="Node3D" parent="StateMachine"]
 script = ExtResource("9_n6vq4")
 
+[node name="MoveToState" type="Node3D" parent="StateMachine"]
+script = ExtResource("10_2lf8p")
+
+[node name="From" type="Node3D" parent="StateMachine/MoveToState"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.07)
+
+[node name="To" type="Node3D" parent="StateMachine/MoveToState"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.07)
+
+[node name="SadState" type="Node3D" parent="StateMachine"]
+script = ExtResource("12_36y4b")
+
+[node name="SleepState" type="Node3D" parent="StateMachine"]
+script = ExtResource("13_nkr01")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="StateMachine/SleepState"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0643394, 0.0959583)
+material_override = SubResource("StandardMaterial3D_2a3mu")
+emitting = false
+amount = 3
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_c7eyl")
+draw_pass_1 = SubResource("QuadMesh_el381")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+path_max_distance = 1.01

@@ -23,7 +23,15 @@ tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_40y41"]
 sample_partition_type = 1
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 1
 geometry_source_geometry_mode = 2
+geometry_source_group_name = &"navmesh_generation_shape"
+cell_size = 0.01
+cell_height = 0.01
+agent_height = 0.15
+agent_radius = 0.01
+agent_max_climb = 0.05
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_mj1yx")

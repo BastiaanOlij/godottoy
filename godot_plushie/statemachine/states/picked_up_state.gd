@@ -7,20 +7,18 @@ func get_state_name() -> String:
 
 
 # We're entering this state
-func enter(plushie : GodotPlushie) -> void:
-	var animator : PlushieAnimator = plushie.get_node("Plushie")
+func enter() -> void:
 	animator.picked_up = true
 
 
 # We're exiting this state
-func exit(plushie : GodotPlushie) -> void:
-	var animator : PlushieAnimator = plushie.get_node("Plushie")
+func exit() -> void:
 	animator.picked_up = false
 
 
 # Handle physics process.
 @warning_ignore("unused_parameter")
-func do_physics_process(plushie : GodotPlushie, delta : float) -> bool:
+func do_physics_process(delta : float) -> bool:
 	plushie.velocity = Vector3()
 
 	return false
