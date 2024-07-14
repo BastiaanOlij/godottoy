@@ -114,7 +114,7 @@ animation = &"Idle"
 animation = &"Idle_ArmsFwrd"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fabmn"]
-animation = &"Run_ArmsFwd"
+animation = &"Run"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_15nst"]
 animation = &"Walk"
