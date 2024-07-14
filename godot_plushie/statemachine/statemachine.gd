@@ -6,8 +6,7 @@ class_name StateMachine
 
 @export_range(0.0, 1.0, 0.1) var stamina : float = 1.0
 @export_range(0.0, 1.0, 0.1) var hunger : float = 0.0
-@export_range(0.0, 1.0, 0.1) var happiness : float = 1.0 
-
+@export_range(0.0, 1.0, 0.1) var happiness : float = 1.0
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
 @export var state : State:
@@ -21,7 +20,6 @@ class_name StateMachine
 			# init our new state
 			state.enter(plushie)
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if state:
@@ -29,7 +27,6 @@ func _ready():
 		state.enter(plushie)
 	else:
 		$StateLabel.text = "No state"
-
 
 func do_physics_process(delta : float) -> bool:
 	var text : String

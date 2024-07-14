@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 unfreeze_on_start=""
 highlight_pickup=""
+navmesh_generation_mesh="navmesh_generation_mesh"
+navmesh_regions="navmesh_regions"
 
 [layer_names]
 
