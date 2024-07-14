@@ -7,6 +7,6 @@
 render_priority = 0
 shader = ExtResource("2_14e8y")
 
-[node name="SceneAnchor" type="StaticBody3D" groups=["navmesh_generation_mesh"]]
+[node name="SceneAnchor" type="StaticBody3D" groups=["navmesh_generation_shape"]]
 script = ExtResource("1_b8vna")
 material = SubResource("ShaderMaterial_y2giy")
