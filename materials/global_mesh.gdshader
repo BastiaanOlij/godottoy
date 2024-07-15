@@ -1,7 +1,6 @@
 shader_type spatial;
-render_mode unshaded; // shadow_to_opacity
+render_mode blend_mix, depth_draw_opaque, cull_back, shadow_to_opacity;
 
 void fragment() {
-	ALBEDO = vec3(1.0, 1.0, 0.0);
-	ALPHA = 0.5;
+    ALBEDO = vec3(0.0, 0.0, 0.0);
 }
