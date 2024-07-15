@@ -8,9 +8,8 @@ func setup_scene(entity: OpenXRFbSpatialEntity) -> void:
 	if collision_shape:
 		add_child(collision_shape)
 
-	# Shadow to opacity is broken for some reasons..
-	#var mesh_instance = entity.create_mesh_instance()
-	#if mesh_instance:
-	#	add_child(mesh_instance)
+	var mesh_instance = entity.create_mesh_instance()
+	if mesh_instance:
+		add_child(mesh_instance)
 
-	#	mesh_instance.material_override = material
+		mesh_instance.material_override = material
